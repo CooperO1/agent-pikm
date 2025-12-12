@@ -1,7 +1,9 @@
 import streamlit as st
 import os
+import requests
+from datetime import datetime
 from llm_service import LLMService
-from prompts import ANALYSIS_PROMPT
+from prompts import ANALYSIS_PROMPT, SYSTEM_PROMPT
 
 def main():
     st.set_page_config(page_title="Agent Pikm", page_icon="🏈", layout="wide")
@@ -31,9 +33,10 @@ def main():
 
     # Main Content
     if st.button("Generate Picks"):
+        full_prompt = f"{SYSTEM_PROMPT}\n\n{ANALYSIS_PROMPT}"
+        
         with st.spinner(f"Consulting {selected_provider}..."):
-            # In a real scenario, we might inject current week data into the prompt here
-            response = llm_service.generate_response(selected_provider, ANALYSIS_PROMPT, api_key)
+            response = llm_service.generate_response(selected_provider, full_prompt, api_key)
             
             st.subheader("Analysis Results")
             st.write(response)

@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from openai import OpenAI
 
 load_dotenv()
@@ -19,11 +20,18 @@ class LLMService:
             
             if not api_key:
                 return "Error: GOOGLE_API_KEY not found. Please set it in .env or provide it in the UI."
-            
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel('gemini-pro')
+
+            client = genai.Client(api_key=api_key) 
             try:
-                response = model.generate_content(prompt)
+                response = client.models.generate_content(
+                    model='gemini-3-pro-preview',
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        tools=[types.Tool(
+                            google_search=types.GoogleSearch() 
+                        )]
+                    )
+                )
                 return response.text
             except Exception as e:
                 return f"Error calling Gemini: {e}"

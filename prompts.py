@@ -5,10 +5,10 @@ Your goal is to provide concise, data-driven analysis for the current week's gam
 """
 
 ANALYSIS_PROMPT = """
-Please analyze the upcoming NFL games for this week.
+Determine the current weeks NFL game matchups.
 For each game, provide:
 1. Matchup (Team A vs Team B)
-2. Predicted Winner
+2. Predicted Winner and 1 line description on whether or not the favored team will beat the spread.
 3. Confidence Level (Low, Medium, High)
 4. Key Reason for the pick (1-2 sentences)
 
