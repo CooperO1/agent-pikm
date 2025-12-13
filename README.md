@@ -11,14 +11,14 @@ The application provides a simple interface where you can select your preferred 
 ### Prerequisites
 
 - Python 3.11 or higher
-- [Poetry](https://python-poetry.org/docs/#installation) for dependency management (optional, but recommended)
+- [uv](https://docs.astral.sh/uv/getting-started/installation/) for dependency management (optional, but recommended)
 
 ### Installation and Setup
 
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/agent-pikm.git
+    git clone https://github.com/CooperO1/agent-pikm.git
     cd agent-pikm
     ```
 
