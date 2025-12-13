@@ -12,6 +12,7 @@ The application provides a simple interface where you can select your preferred 
 
 - Python 3.11 or higher
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) for dependency management (optional, but recommended)
+- [Podman](https://podman.io/docs/installation) for building and running the containerized application.
 
 ### Installation and Setup
 
@@ -58,3 +59,21 @@ streamlit run main.py
 ```
 
 This will start a local web server, and you can access the application in your browser at `http://localhost:8501`.
+
+## Running with Podman
+
+To build and run the application using Podman:
+
+1.  **Build the Podman image:**
+
+    ```bash
+    podman build -t agent-pikm .
+    ```
+
+2.  **Run the Podman container:**
+
+    ```bash
+    podman run -p 8501:8501 --env-file ./.env agent-pikm
+    ```
+
+    This will start the Streamlit application inside a Podman container, accessible at `http://localhost:8501`. Ensure your `.env` file is configured with the necessary API keys.
